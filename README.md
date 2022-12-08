@@ -1,3 +1,5 @@
+**This is a fork of the package MobileFirstLLC/extension-cli with some extra goodness. Pull Requests welcome!**
+
 # Extension CLI
 
 [![npm](https://img.shields.io/npm/v/extension-cli?style=flat-square)](https://www.npmjs.com/package/extension-cli)
@@ -6,8 +8,6 @@
 [![Last commit](https://img.shields.io/github/last-commit/mobilefirstllc/extension-cli?style=flat-square)](https://github.com/MobileFirstLLC/extension-cli/commits/master)
 [![npm](https://img.shields.io/npm/dt/extension-cli?style=flat-square)](https://www.npmjs.com/package/extension-cli)
 <!-- [![Coveralls github](https://img.shields.io/coveralls/github/MobileFirstLLC/extension-cli?style=flat-square)](https://coveralls.io/github/MobileFirstLLC/extension-cli) hide coverage because it represents only utilities and may signal incorrectly; add back when this includes all of CLI commands -->
-
-**This is a fork of the package MobileFirstLLC/extension-cli with some extra goodness. Pull Requests welcome!**
 
 **Extension CLI is a command-line application that facilitates chromium&#8727;-based web extension development by providing
 a systematic way to build, test and document extension projects. It handles the project setup and builds and lets you focus 
