@@ -55,6 +55,9 @@ const proc = exec([
     // path to project's package.json
     util.format('--pkg', path.resolve(process.cwd(), './package.json')),
 
+    // path to project's webpack config
+    util.format('--webpack', path.resolve(process.cwd(), './webpack.xtbuild.js')),
+
     // explicitly tell gulp to use cwd (necessary)
     util.format('--cwd', path.resolve(process.cwd())),
 

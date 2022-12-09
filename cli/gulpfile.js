@@ -8,7 +8,7 @@ const webpack = require('webpack-stream');
 const sass = require('gulp-sass')(require('sass'));
 const Utilities = require('./utilities').Utilities;
 const argv = require('yargs').argv;
-const {prod: isProd, firefox: isFirefox, pkg: pkgPath, config} = argv;
+const { prod: isProd, firefox: isFirefox, pkg: pkgPath, config, webpack: webpackConfigFilePath } = argv;
 
 /** helper method to ensure array type */
 const ensureArray = path => Array.isArray(path) ? path : [path];
@@ -38,7 +38,17 @@ if (customPaths) {
 
 const clean = () => del([paths.dist + '/*']);
 
-const script = ({src, name, mode}, done = _ => true) => {
+const script = ({src, name, mode, webpackOptions: localWebpackOverrides = {}}, done = _ => true) => {
+
+    const globalWebpackOverrides =
+        Utilities.fileExists(webpackConfigFilePath) ?
+            require(webpackConfigFilePath)({isProd, name}) :
+            {};
+
+    const webpackOverrides = {
+        ...globalWebpackOverrides,
+        ...localWebpackOverrides
+    };
 
     const webpackOptions = {
         // use mode if specified explicitly; otherwise choose by --env
@@ -46,7 +56,8 @@ const script = ({src, name, mode}, done = _ => true) => {
         // match sourcemap name with configured js file name
         output: {filename: `${name}.js`},
         // use source map with dev builds only
-        devtool: isProd ? undefined : 'cheap-source-map'
+        devtool: isProd ? undefined : 'cheap-source-map',
+        ...webpackOverrides
     };
 
     return gulp.src(src)
